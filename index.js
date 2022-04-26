@@ -50,7 +50,7 @@ async function main(name)
         };
         let msg = JSON.stringify(payload);
         await client.publish(name, msg);
-        console.log(`${name} ${msg}`);
+        // console.log(`${name} ${msg}`);
     }, 1000);
 
 }
