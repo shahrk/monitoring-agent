@@ -30,13 +30,14 @@ class Agent
 async function main(name, ip)
 {
     let agent = new Agent();
-
+    console.log(`NAME: ${name} IP: ${ip}`);
     let connection = redis.createClient(6379, ip, {})
     connection.on('error', function(e)
     {
         console.log(e);
         process.exit(1);
     });
+    console.log(`CONNECTED`);
     let client = {};
     client.publish = util.promisify(connection.publish).bind(connection);
 
