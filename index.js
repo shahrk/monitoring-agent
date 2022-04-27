@@ -9,7 +9,6 @@ class Agent
 {
     memoryLoad()
     {
-    //    console.log( os.totalmem(), os.freemem() );
        return 100*(os.freemem()/os.totalmem());
     }
     async cpu()
@@ -23,16 +22,16 @@ class Agent
 {
     // Get agent name from command line.
     let args = process.argv.slice(2);
-    main(args[0]);
+    main(args[0], args[1]);
 
 })();
 
 
-async function main(name)
+async function main(name, ip)
 {
     let agent = new Agent();
 
-    let connection = redis.createClient(6379, 'localhost', {})
+    let connection = redis.createClient(6379, ip, {})
     connection.on('error', function(e)
     {
         console.log(e);
@@ -50,7 +49,7 @@ async function main(name)
         };
         let msg = JSON.stringify(payload);
         await client.publish(name, msg);
-        // console.log(`${name} ${msg}`);
+        console.log(`${name} ${msg}`);
     }, 1000);
 
 }
