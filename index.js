@@ -40,7 +40,7 @@ async function main(name, ip)
     console.log(`CONNECTED`);
     let client = {};
     client.publish = util.promisify(connection.publish).bind(connection);
-
+    console.log(`CONNECTED FINALLY`);
     // Push update ever 1 second
     setInterval(async function()
     {
